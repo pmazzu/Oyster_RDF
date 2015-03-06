@@ -42,6 +42,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.lang.Double;
 
+import java.util.logging.Logger;
+
 /**
  * An Inverted Index is a mapping structure that maps a word to its location 
  * within the data file. The goal of an inverted index is to optimize the speed 
@@ -107,6 +109,8 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     /** Scan Utility */
     private Scan scan;
     
+    private final static Logger logger_results = Logger.getLogger("RESULTS");
+    
     /**
      * Creates a new instance of <code>TalburtZhouInvertedIndex</code>.
      */
@@ -150,8 +154,8 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
             Set<String> hashes = getHash(oir, rules);
             for (Iterator<String> it = hashes.iterator(); it.hasNext();) {
                	//BEGIN CHANGE - MAZZUCCHI
-            	String hash = it.next();                             
-            	//String  hash = isThereAnySimilarHashValue(index,it.next());
+            	//String hash = it.next();                             
+            	String  hash = isThereAnySimilarHashValue(index,it.next());
                 
                 Set<String> s = index.get(hash);             
                 //END CHANGE - MAZZUCCHI
@@ -189,8 +193,8 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
 
             for (Iterator<String> it = hashes.iterator(); it.hasNext();) {
             	//BEGIN CHANGE - MAZZUCCHI
-            	String hash = it.next();                             
-            	//String  hash = isThereAnySimilarHashValue(index,it.next());
+            	//String hash = it.next();                             
+            	String  hash = isThereAnySimilarHashValue(index,it.next());
                 
                 Set<String> s = index.get(hash);             
                 //END CHANGE - MAZZUCCHI
@@ -222,10 +226,12 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     	Heuristics simil = null;
     	double porcSimil = 0.0;
     	
+		logger_results.info("Similar HashValue"+"\r\n"); 
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
     		
-    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "0.82", "rms;nickname;NYSII", "SUBSET",1);
+    		logger_results.info(hash+"|"+lookingForSimilarities + "|");
+    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "0.70", "rms", "SUBSET",1);
     		porcSimil = (double)simil.getAssertions() / (double)simil.getRows();
 
 			//System.out.println(hash + "|" + lookingForSimilarities+"|"+simil.getSimilarityGrade()+"|"+porcSimil);
@@ -359,8 +365,8 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
         for (Iterator<String> it = hashes.iterator(); it.hasNext();) {
             String hash = it.next();
             //BEGIN CHANGE
-            Set<String> s = index.get(hash);
-            //Set<String> s = getSimilarCandidates(index,hash);
+//            Set<String> s = index.get(hash);
+            Set<String> s = getSimilarCandidates(index,hash);
             //END CHANGE
             
             if (s != null) {
@@ -470,10 +476,11 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     	double max_similarity = 0.00;
     	Heuristics simil = null;
  
-    	
+		logger_results.info("Candidates List"+"\r\n");    	
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
-    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.82", "rms", "SUBSET",1);
+    		logger_results.info(hash+"|"+valueToBeCompared + "|");
+    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.70", "rms", "SUBSET",1);
     		
     		if (simil.getAssertions() > 0){
     			if (max_similarity <= simil.getSimilarityGrade()){

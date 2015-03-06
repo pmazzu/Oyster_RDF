@@ -53,6 +53,7 @@ import edu.ualr.oyster.kb.DBEntityMap;
 import edu.ualr.oyster.kb.EntityMap;
 import edu.ualr.oyster.kb.ModificationRecord;
 import edu.ualr.oyster.kb.OysterIdentityRepository;
+import edu.ualr.oyster.utilities.acma.log.LogAdministrator;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -96,6 +97,10 @@ import java.util.logging.Logger;
 // #[regen=yes,id=DCE.59177C02-1066-210A-E05F-F9F0D1A34C39]
 // </editor-fold>
 public class OysterMain {
+	
+	//mazzucchi
+	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
+	private final static Logger logger_results = Logger.getLogger("RESULTS");
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker ">
     // #[regen=yes,id=DCE.E2CBC7ED-318F-1C52-1F67-F595C7E63ECD]
@@ -2766,6 +2771,13 @@ public class OysterMain {
     public static void main (String[] args) {
         final OysterMain oMain = new OysterMain();
 
+		//mazzucchi
+        LogAdministrator.init_summary();
+        LogAdministrator.init_results();
+        logger_summary.info("Source" +"|" +"SourceID" + "|" + "Target" +"|" +"TargetID" + "|" + "Similarity" + "\r\n" );
+        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "\r\n" );
+        //
+        
         System.out.println("Oyster v." + oMain.getVersion());
         System.out.println();
 
@@ -2823,6 +2835,9 @@ public class OysterMain {
             ex.printStackTrace();
         }
 */
+        //mazzucchi
+        LogAdministrator.removeHandler("SUMMARY");
+        LogAdministrator.removeHandler("RESULTS");
     }
     
     public void kill() {

@@ -58,7 +58,8 @@ public class LogAdministrator {
 		 fh_results.setFormatter(new SimpleFormatter() {
 				@Override
 				public String format(LogRecord record){
-					String message = record.getMessage() + "\r\n";	
+//					String message = record.getMessage() + "\r\n";	
+					String message = record.getMessage();
 					return message;
 				}
 		 });
@@ -92,7 +93,8 @@ public class LogAdministrator {
 		 fh_summary.setFormatter(new SimpleFormatter(){
 				@Override
 				public String format(LogRecord record){
-					String message = record.getMessage() + "\r\n";	
+				//	String message = record.getMessage() + "\r\n";	
+					String message = record.getMessage();
 					return message;
 				}
 		 });

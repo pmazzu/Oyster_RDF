@@ -23,6 +23,7 @@ import java.util.Locale;
 public class Sources {
 
 	private final static Logger logger_log = Logger.getLogger("LOG");
+	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
 	
 /**
  * The file received should be a .csv file with just 1 file  
@@ -151,6 +152,8 @@ public class Sources {
 			author1.setFingerPrintName(author_splitted[i]);
 			author1.setPosition(i);
 			author_1.add(author1);
+			//logger_summary.info("RealName: " + author1.getRealName());
+			//logger_summary.info("FingerPrint: " + author1.getFingerPrintName());
 		}
 		
 		return author_1;

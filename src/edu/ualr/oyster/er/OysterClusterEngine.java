@@ -49,6 +49,9 @@ import java.util.logging.Logger;
  * @author Eric D. Nelson
  */
 public class OysterClusterEngine extends OysterResolutionEngine {
+	
+	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
+	
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.C3246F28-9E8A-B49F-B148-25190DA862CA]
     // </editor-fold> 
@@ -609,12 +612,20 @@ public class OysterClusterEngine extends OysterResolutionEngine {
 
                     OysterComparator compare = getAttributes().getComparator(item);
                     String target = candidate.get(item);
+                    
+                  //System.out.println("Source: " +  oir.get("recurso") + " | Target: "+ candidate.get("recurso"));
+//                    logger_summary.info(oir.get("Nombre-recurso") + "|"+ candidate.get("Nombre-recurso")+"|");
+                    //logger_summary.info(oir.get("Nombre-recurso")+"|"+oir.get("@RefID").replace("source1.", "") + "|" + candidate.get("Nombre-recurso")+ "|" + candidate.get("@RefID").replace("source1.", "") +"|");
+                    logger_summary.info(oir.get("NOMBRE")+"|"+oir.get("@RefID") + "|" + candidate.get("NOMBRE")+ "|" + candidate.get("@RefID") +"|");
+
+                    
 
                     if (!(flag = compare(compare, source, target, matchResult))) {
                         if (compareToItems != null) {
                             for (Iterator<String> it3 = compareToItems.iterator(); it3.hasNext();) {
                                 String secItem = it3.next();
                                 source = oir.get(secItem);
+                                logger_summary.info(oir.get("NOMBRE") + "|"+ candidate.get("NOMBRE")+"|");
                                 if ((flag = compare(compare, source, target, matchResult))) {
                                     break;
                                 }

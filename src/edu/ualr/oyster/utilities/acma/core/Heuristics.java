@@ -120,14 +120,14 @@ public class Heuristics extends Similarity {
 				//**********************************************************************************************
 			case 4:
 				
-				simil.initialization_oyster(args,2); //1: semicolon 2:space
+				simil.initialization_oyster(args,1); //1: semicolon 2:space
 				
 				Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, true); // Comparison process
 				aggregation.calculate_max_average(simil); // Calculate the similarity grade				
 				
-				if(mode == "DEBUG"){
-					logger_summary.info("Similarity Grade: " + simil.getSimilarityGrade());
-				}
+//				if(mode == "DEBUG"){
+//					logger_summary.info("Similarity Grade: " + simil.getSimilarityGrade());
+//				}
 								
 				break;
 				

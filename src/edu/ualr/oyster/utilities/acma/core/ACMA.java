@@ -3,12 +3,13 @@ package edu.ualr.oyster.utilities.acma.core;
 import java.util.logging.Logger;
 //import java.util.*;
 
+
 import edu.ualr.oyster.utilities.acma.log.LogAdministrator;
 
 
 public class ACMA {
 	
-//	private final static Logger logger_results = Logger.getLogger("RESULTS");
+	private final static Logger logger_results = Logger.getLogger("RESULTS");
 	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
 //	private final static Logger logger_log = Logger.getLogger("LOG");
 	
@@ -57,7 +58,7 @@ public class ACMA {
 //		}
 				
 		String threshold_noSimil = "0.8";
-		String heuristic_id = "5";
+		String heuristic_id = "4";
 		
 		String[] arguments = new String[7];
 			
@@ -73,16 +74,26 @@ public class ACMA {
 		double[] results = new double[2];
 			
 		Heuristics simil = new Heuristics();
-		
-//		logger_summary.info("Lists to be compared: " + list_1 + " | " + list_2);
-		
+				
 		Heuristics.heuristic(simil, arguments);
 			
 //		if (simil.getSimilarityGrade()> simil.getThreshold()){
 //			similar = true;
 //		}else{
 //			similar = false;
-//		}		
+//		}
+		
+		//logger_summary.info("Lists compared: " + list_1 + " | " + list_2 + " | " + simil.getSimilarityGrade());
+		
+		//logger_summary.info("Similitud: " +  simil.getSimilarityGrade());
+		
+		if(stage == 1){
+			logger_results.info(simil.getSimilarityGrade() + "\r\n"); //inside cluster comparison
+		}else{
+			logger_summary.info(simil.getSimilarityGrade() + "\r\n"); // index comparison
+		}
+		
+		
 		
 		//LogAdministrator.removeHandler("LOG");
 		//LogAdministrator.removeHandler("RESULTS");
