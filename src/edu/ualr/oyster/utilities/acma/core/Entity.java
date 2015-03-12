@@ -21,6 +21,7 @@ public class Entity {
 	}
 	public void setRealName(String name){
 		this.realName = this.homogeneousFormat(name);
+		//this.realName = name;
 	}
 	public void setRealNameWithoutFormatting(String name){
 		this.realName = name;
@@ -81,7 +82,7 @@ public class Entity {
 		Fingerprint fingerPrint = new Fingerprint();
 		
 		name = name.trim(); // elimina espacios al comienzo y al final de la cadena
-		name = name.toUpperCase();
+		name = name.toLowerCase();
 	
 		int length = name.length();
 		
@@ -103,7 +104,7 @@ public class Entity {
 				//String hyphen = "-";
 				//temp = temp + hyphen;
 				if(!consecutiveshypen){
-					String space = "";
+					String space = " ";
 					temp = temp + String.format("%-1s", space);
 					consecutiveshypen = true;
 				}

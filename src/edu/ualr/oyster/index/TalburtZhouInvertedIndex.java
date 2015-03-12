@@ -169,9 +169,9 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
                 index.put(hash, s);
                 
                 //
-//                System.out.println("Miembros");
+                //logger_results.info("Miembros" + "\r\n");
 //                for (Iterator<String> itr = s.iterator();itr.hasNext();){
-//                	System.out.println(hash+"|"+itr.next());
+//                	logger_results.info(hash+"|"+itr.next()+ "\r\n");
 //                }
                 
             }
@@ -226,18 +226,18 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     	Heuristics simil = null;
     	double porcSimil = 0.0;
     	
-		logger_results.info("Similar HashValue"+"\r\n"); 
+		//logger_results.info("Similar HashValue"+"\r\n"); 
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
     		
-    		logger_results.info(hash+"|"+lookingForSimilarities + "|");
-    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "0.70", "rms", "SUBSET",1);
+    		//logger_results.info(hash+"|"+lookingForSimilarities + "|");
+    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "0.70", "jw", "SUBSET", "ws",1);
     		porcSimil = (double)simil.getAssertions() / (double)simil.getRows();
 
 			//System.out.println(hash + "|" + lookingForSimilarities+"|"+simil.getSimilarityGrade()+"|"+porcSimil);
     		
     		//if (simil.getAssertions() > 0 & porcSimil > 0.5){
-    		if (porcSimil >= 0.5){
+    		if (porcSimil >= 0.5 && simil.getSimilarityGrade() >= 0.7){    		
     			if (max_similarity <= simil.getSimilarityGrade()){
     				candidates = hash;
     				max_similarity = simil.getSimilarityGrade();
@@ -475,14 +475,18 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     	ACMA acma = new ACMA();
     	double max_similarity = 0.00;
     	Heuristics simil = null;
+    	double porcSimil = 0.0;
  
-		logger_results.info("Candidates List"+"\r\n");    	
+		//logger_results.info("Candidates List"+"\r\n");    	
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
-    		logger_results.info(hash+"|"+valueToBeCompared + "|");
-    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.70", "rms", "SUBSET",1);
+    		//logger_results.info(hash+"|"+valueToBeCompared + "|");
+    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.70", "jw", "SUBSET", "ws",1);
     		
-    		if (simil.getAssertions() > 0){
+    		porcSimil = (double)simil.getAssertions() / (double)simil.getRows();
+    		
+    		//if (simil.getAssertions() > 0 && simil.getSimilarityGrade() >= 0.7){
+    		if (porcSimil >= 0.5 && simil.getSimilarityGrade() >= 0.7){
     			if (max_similarity <= simil.getSimilarityGrade()){
     				candidates = index.get(hash);
     				max_similarity = simil.getSimilarityGrade();

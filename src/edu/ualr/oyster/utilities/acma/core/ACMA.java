@@ -41,7 +41,7 @@ public class ACMA {
 //			
 //	}
 //	
-	public Heuristics multivalued_attr_similarity_calc(String list_1, String list_2, String threshold, String comparators, String aggrMode, int stage){
+	public Heuristics multivalued_attr_similarity_calc(String list_1, String list_2, String threshold, String comparators, String aggrMode, String separator, int stage){
 		
 	//TODO REMOVE FROM HERE
 //		LogAdministrator.init_log();
@@ -60,7 +60,7 @@ public class ACMA {
 		String threshold_noSimil = "0.8";
 		String heuristic_id = "4";
 		
-		String[] arguments = new String[7];
+		String[] arguments = new String[8];
 			
 		arguments[0] = list_1; 
 		arguments[1] = list_2;
@@ -69,12 +69,13 @@ public class ACMA {
 		arguments[4] = comparators;
 		arguments[5] = aggrMode;
 		arguments[6] = heuristic_id;
+		arguments[7] = separator;
 		
 		boolean similar;
 		double[] results = new double[2];
 			
 		Heuristics simil = new Heuristics();
-				
+					
 		Heuristics.heuristic(simil, arguments);
 			
 //		if (simil.getSimilarityGrade()> simil.getThreshold()){
@@ -83,15 +84,17 @@ public class ACMA {
 //			similar = false;
 //		}
 		
-		//logger_summary.info("Lists compared: " + list_1 + " | " + list_2 + " | " + simil.getSimilarityGrade());
 		
-		//logger_summary.info("Similitud: " +  simil.getSimilarityGrade());
+		//logger_summary.info("\r\n" + "Similitud: " +  simil.getSimilarityGrade()+ "\r\n");
 		
-		if(stage == 1){
-			logger_results.info(simil.getSimilarityGrade() + "\r\n"); //inside cluster comparison
-		}else{
-			logger_summary.info(simil.getSimilarityGrade() + "\r\n"); // index comparison
-		}
+		//logger_summary.info("Source: " +  list_1 + " Target: " + list_2 + "\r\n");
+		
+//		if(stage == 1){
+//			logger_results.info(simil.getSimilarityGrade() + "\r\n"); //inside cluster comparison
+//		}else{
+//			logger_summary.info(simil.getSimilarityGrade() + "\r\n"); // index comparison
+//			//logger_summary.info("Lists compared: " + list_1 + " | " + list_2 + " | " + simil.getSimilarityGrade()+"\r\n");
+//		}
 		
 		
 		

@@ -2774,8 +2774,8 @@ public class OysterMain {
 		//mazzucchi
         LogAdministrator.init_summary();
         LogAdministrator.init_results();
-        logger_summary.info("Source" +"|" +"SourceID" + "|" + "Target" +"|" +"TargetID" + "|" + "Similarity" + "\r\n" );
-        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "\r\n" );
+//        logger_summary.info("Source" +"|" +"SourceID" + "|" + "Target" +"|" +"TargetID" + "|" + "Similarity" + "\r\n" );
+//        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "\r\n" );
         //
         
         System.out.println("Oyster v." + oMain.getVersion());

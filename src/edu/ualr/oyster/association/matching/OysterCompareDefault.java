@@ -334,7 +334,8 @@ public class OysterCompareDefault extends OysterComparator {
         // BEGIN MODIFICATION
         String threshold_acma = "";
         String list_comparators = "";
-        String aggrMode = "";     
+        String aggrMode = "";
+        String separator = "";
         // END MODIFICATION
         float match = 1f, mismatch = 0f, gap = 0f, alpha = 0f, beta = 0f;
         boolean not = false;
@@ -460,6 +461,7 @@ public class OysterCompareDefault extends OysterComparator {
             threshold_acma = temp[0].trim(); 
             list_comparators = temp[1].trim();
             aggrMode = temp[2].trim();
+            separator = temp[3].trim();
             
             matchType = "ACMA";
         }
@@ -560,7 +562,7 @@ public class OysterCompareDefault extends OysterComparator {
         } else if (matchType.equalsIgnoreCase("SCAN") && scan.compareScan(s, t, direction, charType, length, upperCase, order)){
             result = tempMatchType;
       // BEGIN MODIFICATION
-        } else if (matchType.equalsIgnoreCase("ACMA") && acma.multivalued_attr_similarity_calc(s, t, threshold_acma, list_comparators, aggrMode,2).getSimilarityGrade() >= Double.parseDouble(threshold_acma)){
+        } else if (matchType.equalsIgnoreCase("ACMA") && acma.multivalued_attr_similarity_calc(s, t, threshold_acma, list_comparators, aggrMode, separator, 2).getSimilarityGrade() >= Double.parseDouble(threshold_acma)){
         	result = tempMatchType;
       // END MODIFICATION
         } else {
@@ -662,7 +664,7 @@ public class OysterCompareDefault extends OysterComparator {
             } else if (matchType.equalsIgnoreCase("SCAN") && !scan.compareScan(s, t, direction, charType, length, upperCase, order)) {
                 result = tempMatchType;
            // BEGIN MODIFICATION
-            } else if (matchType.equalsIgnoreCase("ACMA") && !(acma.multivalued_attr_similarity_calc(s, t, threshold_acma, list_comparators, aggrMode,2).getSimilarityGrade() >= Double.parseDouble(threshold_acma))) {
+            } else if (matchType.equalsIgnoreCase("ACMA") && !(acma.multivalued_attr_similarity_calc(s, t, threshold_acma, list_comparators, aggrMode, separator, 2).getSimilarityGrade() >= Double.parseDouble(threshold_acma))) {
                 result = tempMatchType;
            // END MODIFICATION
             } else {

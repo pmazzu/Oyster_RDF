@@ -1,12 +1,18 @@
 package edu.ualr.oyster.utilities.acma.core;
 
+import edu.ualr.oyster.utilities.acma.blocking.Fingerprint;
 import edu.ualr.oyster.utilities.acma.source.Sources;
+
+
 //import java.util.Arrays;
 import java.util.*;
+import java.util.regex.Pattern;
 
 //import java.util.logging.Logger;
 
 public abstract class Similarity {
+	
+	static final Pattern punctctrl = Pattern.compile("\\p{Punct}|[\\x00-\\x08\\x0A-\\x1F\\x7F]");
 	
 	//private final static Logger logger_log = Logger.getLogger("LOG");
 	
@@ -18,9 +24,19 @@ public abstract class Similarity {
 	//public Entity [] source;
 	public ArrayList<Entity> source;
 	public ArrayList<Entity> target;
-	public String[] impl_comparators = {"rms", "nickname", "exact", "alias", "NYSII"};
+	public String[] impl_comparators = {"rms", "nickname", "exact", "alias", "NYSII", "jw"};
 	public String [] comparators;
+	public String comparators_string;
 
+	
+	public String getCompString(){
+		return this.comparators_string;
+	}
+	
+	public void setCompString(String compList){
+		this.comparators_string = compList;
+	}
+	
 	public Aggregation getAggregation(){
 		return this.aggregation;
 	}
@@ -292,7 +308,7 @@ public abstract class Similarity {
 	}
 	
 	
-	public void initialization_oyster(String[] args, int splitSeparator){
+	public void initialization_oyster(String[] args){
 		
 		String authorList1 = args[0];
 		String authorList2 = args[1];
@@ -314,6 +330,14 @@ public abstract class Similarity {
 		ArrayList<Entity> author_1 = null;
 		ArrayList<Entity> author_2 = null;
 		
+		int splitSeparator = 0;
+		
+		if (args[7].equals("ws")){
+			splitSeparator = 2; //space
+		}else if(args[7].equals(";")){
+			splitSeparator = 1; //semicolon
+		}
+		
 		int rows = 0, columns = 0;
 		
 		Sources source1 = new Sources();		
@@ -324,6 +348,10 @@ public abstract class Similarity {
 				author_2 = source1.process_authors_semicolon(authorList2);
 				break;
 			case 2://space
+				
+				authorList1 = this.homogeneousFormat(authorList1);
+				authorList2 = this.homogeneousFormat(authorList2);
+				
 				author_1 = source1.process_string_space(authorList1);
 				author_2 = source1.process_string_space(authorList2);
 				break;
@@ -374,6 +402,7 @@ public abstract class Similarity {
 						
 		// Initialize the similarity attributes object
 		
+		this.setCompString(comparators); 
 		this.aggregation.setMode(aggrMode);
 		this.setComparators(comparators_temp);			
 		this.setSimiMatrix(rows, columns);
@@ -453,6 +482,53 @@ public abstract class Similarity {
 		this.setThreshold(threshold); // Set the threshold to determine if the authors are similar or not 0.9
 		this.setNoSimilarityThreshold(threshold_noSimil); // Set the threshold to determine when to stop comparing 0.8
 	}
+	
+	
+	private String homogeneousFormat(String name){
+		String temp = "";
+		Character c;
+		boolean cosecutivesSpaces = false;
+		boolean consecutiveshypen = false;
+		
+		Fingerprint fingerPrint = new Fingerprint();
+		
+		name = name.trim(); // elimina espacios al comienzo y al final de la cadena
+		name = name.toLowerCase();
+		name = punctctrl.matcher(name).replaceAll(" "); // then remove all punctuation and control chars
+	
+		int length = name.length();
+		
+		for(int i=0;i<length;i++){
+			c = name.charAt(i);
+			
+			c = fingerPrint.translate(c);//quita acentos
+						
+			if (java.lang.Character.isLetter(c)){
+				temp = temp + c;
+				cosecutivesSpaces = false;
+				consecutiveshypen = false;
+			} else if( java.lang.Character.isWhitespace(c) ){
+				if(!cosecutivesSpaces){
+					temp = temp + c;
+					cosecutivesSpaces = true;
+				}
+			} else if(c.equals('-')){
+				//String hyphen = "-";
+				//temp = temp + hyphen;
+				if(!consecutiveshypen){
+					String space = " ";
+					temp = temp + String.format("%-1s", space);
+					consecutiveshypen = true;
+				}
+			} else if(java.lang.Character.isDigit(c)){
+				temp = temp + c;
+			}
+		}
+				
+		return temp;
+	}
+	
+	
 }
 
 

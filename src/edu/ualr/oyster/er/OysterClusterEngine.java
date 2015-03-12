@@ -616,7 +616,7 @@ public class OysterClusterEngine extends OysterResolutionEngine {
                   //System.out.println("Source: " +  oir.get("recurso") + " | Target: "+ candidate.get("recurso"));
 //                    logger_summary.info(oir.get("Nombre-recurso") + "|"+ candidate.get("Nombre-recurso")+"|");
                     //logger_summary.info(oir.get("Nombre-recurso")+"|"+oir.get("@RefID").replace("source1.", "") + "|" + candidate.get("Nombre-recurso")+ "|" + candidate.get("@RefID").replace("source1.", "") +"|");
-                    logger_summary.info(oir.get("NOMBRE")+"|"+oir.get("@RefID") + "|" + candidate.get("NOMBRE")+ "|" + candidate.get("@RefID") +"|");
+                    //logger_summary.info(oir.get("NOMBRE")+"|"+oir.get("@RefID") + "|" + candidate.get("NOMBRE")+ "|" + candidate.get("@RefID") +"|");
 
                     
 
@@ -625,7 +625,7 @@ public class OysterClusterEngine extends OysterResolutionEngine {
                             for (Iterator<String> it3 = compareToItems.iterator(); it3.hasNext();) {
                                 String secItem = it3.next();
                                 source = oir.get(secItem);
-                                logger_summary.info(oir.get("NOMBRE") + "|"+ candidate.get("NOMBRE")+"|");
+                                //logger_summary.info(oir.get("NOMBRE") + "|"+ candidate.get("NOMBRE")+"|");
                                 if ((flag = compare(compare, source, target, matchResult))) {
                                     break;
                                 }

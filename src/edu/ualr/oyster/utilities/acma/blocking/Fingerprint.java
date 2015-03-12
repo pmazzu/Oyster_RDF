@@ -49,7 +49,7 @@ public class Fingerprint {
         }
         s = s.trim(); // first off, remove whitespace around the string
         s = s.toLowerCase(); // then lowercase it
-        s = punctctrl.matcher(s).replaceAll(""); // then remove all punctuation and control chars
+        s = punctctrl.matcher(s).replaceAll(" "); // then remove all punctuation and control chars
         String[] frags = StringUtils.split(s); // split by whitespace
         TreeSet<String> set = new TreeSet<String>();
         for (String ss : frags) {
@@ -66,7 +66,7 @@ public class Fingerprint {
         		b.append(author);
         	}
         }
-        return asciify(b.toString()); // find ASCII equivalent to characters 
+        return asciify(b.toString()); // find ASCII equivalent to characters
     }
 
     protected String asciify(String s) {

@@ -14,9 +14,9 @@ import edu.ualr.oyster.utilities.OysterAliasTable;
 
 public class Comparison{
 
-	//private final static Logger logger_results = Logger.getLogger("RESULTS");
-	//private final static Logger logger_summary = Logger.getLogger("SUMMARY");
-	//private final static Logger logger_log = Logger.getLogger("LOG");
+	private final static Logger logger_results = Logger.getLogger("RESULTS");
+	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
+	private final static Logger logger_log = Logger.getLogger("LOG");
 	
 	/**
 	 * When the similarity of two authors exceeds the threshold,
@@ -116,8 +116,25 @@ public class Comparison{
 				while(itr_j.hasNext()){
 					author_column = itr_j.next();
 			
+					
+//					if(author_row.getRealName().contains(" ") || author_column.getRealName().contains(" ")){
+//						ACMA acma = new ACMA();
+//						Heuristics tempSimil;
+//						
+//						tempSimil = acma.multivalued_attr_similarity_calc(author_row.getRealName(), author_column.getRealName(), Double.toString(simil.getThreshold()),simil.getCompString() , simil.getAggregation().getMode()," " , 1);
+//						value = tempSimil.getSimilarityGrade();
+//						simil.setComparisons(simil.getComparisons()+tempSimil.getComparisons());						
+//						
+//					}else{
+//						value = similarity(author_row.getRealName(), author_column.getRealName(), simil);
+//						simil.increaseComparisons();
+//					}
+					
+					
 					value = similarity(author_row.getRealName(), author_column.getRealName(), simil);
+					//logger_summary.info("Partial similarity: " + value + " row: " + author_row.getRealName() + " column: " + author_column.getRealName() + "\r\n");
 					simil.increaseComparisons();
+					
 					double roundedValue = (double) Math.round(100*value)/100;
 					simil.updateSimMatrix(author_row.getPosition(),
 							              author_column.getPosition(),
@@ -401,6 +418,17 @@ public class Comparison{
 				        }
 				        
 				        similarity_values.add(similarity_nysiis);
+						
+						break;
+						
+					case 5://jw
+						
+						JaroWinklerDistance jaroW = new JaroWinklerDistance();
+						
+						//Because the JW implementation returns 0 when are equals and 1 when they are different
+						similarity_jw = 1 - jaroW.distance(author1, author2);
+														
+						similarity_values.add(similarity_jw);
 						
 						break;
 						
