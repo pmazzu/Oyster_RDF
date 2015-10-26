@@ -15,24 +15,6 @@ public class Alignment{
 	 * @return a sorted array 
 	 */
 	
-//	public static Entity[] sorting_elements(Entity[] authors){
-//		
-//		int index = 0;
-//		TreeSet<Entity> sorted_authors = new TreeSet<Entity>(authorComp);
-//		
-//        for (Entity author : authors) {
-//        	sorted_authors.add(author); 
-//        }
-//        
-//        Iterator<Entity> i = sorted_authors.iterator();
-//        
-//        while (i.hasNext()) {  // join ordered fragments back together
-//            authors[index] = i.next();
-//            index++;
-//        }
-//        
-//        return authors;
-//	}
 	public static ArrayList<Entity> sorting_elements(ArrayList<Entity> authors){
 		
 		TreeSet<Entity> sorted_authors = new TreeSet<Entity>(authorComp);
@@ -73,17 +55,6 @@ public class Alignment{
 	 * @return N/A 
 	 */
 	
-//	public static void fingerprint_over_elements(Entity[] authors){
-//		
-//		Fingerprint fingerPrint = new Fingerprint();
-//		
-//		for (int i=0; i < authors.length; i++){
-//			
-//			authors[i].setFingerPrintName(fingerPrint.key(authors[i].getRealName()));
-//			
-//		}
-	
-
 	// NOT USEFUL ANYMORE - NOW, THE FINGERPRINT ALGORITHM IS EXECUTED IN THE INITIALIZATION FACE
 	public static void fingerprint_over_elements(ArrayList<Entity> authors){
 		

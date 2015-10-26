@@ -27,66 +27,6 @@ public class Comparison{
 	 * @return N/A 
 	 */
 
-//	public static void calculate_similarity_of_some_visible_entities(Entity[] authors_i, Entity[] authors_j, Similarity simil, boolean check){
-//		
-//		double value = 0;
-//		double max = 0;
-//		int row = 0, column = 0; 
-//		float checkpoint = 0;
-//		
-//		String mode = LogAdministrator.getMode();
-//		
-//		if (check){
-//			checkpoint = Math.round(authors_i.length * 0.8)-1; // the -1 is because the array index starts from 0 (i)
-//		}
-//		
-//		
-//		for(int i=0; i<authors_i.length;i++){
-//			if(authors_i[i].getVisibility()){
-//				max = 0;
-//				for(int j=0; j<authors_j.length;j++){
-//					if(authors_j[j].getVisibility()){
-//						value = similarity(authors_i[i].getRealName(), authors_j[j].getRealName(), simil);
-//						
-//						simil.increaseComparisons();
-//						simil.updateSimMatrix(i, j, value);
-//						
-////						if (mode == "DEBUG"){
-////							logger_log.info("Similarity value: " + simil.getSimMatrixValue(i, j) + "Row: " + i + "Column: " + j);
-////						}
-//						
-//						if (value > max && value >= simil.getThreshold()){
-//							//could be that two authors in the same row have a similarity higher that the threshold
-//							//but we need the highest one
-//							max = value;
-//							row = i;
-//							column = j;
-//							simil.increaseAssertions();
-//							j = authors_j.length;
-//						}
-//					}
-//				}
-//				
-//				if (max != 0){
-//					authors_i[row].setVisibilityFalse(); // the author of this row will not be compared again against other author
-//					authors_j[column].setVisibilityFalse(); // the author of this column will not be compared again against other author
-//				}
-//										
-//				if(check){
-//					if (i == checkpoint){
-//						simil.calculate_partial_similarity_grade(i);
-//						if (mode == "DEBUG"){
-//							logger_log.info("Partial similarity: " + simil.getPartialSimilarityGrade());
-//						}
-//						if(simil.getPartialSimilarityGrade() < simil.getNoSimilarityThreshold()){
-//							i = authors_i.length;; // It is not useful continue with the comparison if the .7 of the authors similarity is below the threshold
-//						}
-//					}
-//				}		
-//			}
-//		}
-//	}
-	
 	public static void calculate_similarity_of_some_visible_entities(ArrayList<Entity> authors_i, ArrayList<Entity> authors_j, Similarity simil, boolean check){
 		
 		double value = 0;
@@ -114,22 +54,7 @@ public class Comparison{
 				itr_j = authors_j.iterator();
 				third_loop:
 				while(itr_j.hasNext()){
-					author_column = itr_j.next();
-			
-					
-//					if(author_row.getRealName().contains(" ") || author_column.getRealName().contains(" ")){
-//						ACMA acma = new ACMA();
-//						Heuristics tempSimil;
-//						
-//						tempSimil = acma.multivalued_attr_similarity_calc(author_row.getRealName(), author_column.getRealName(), Double.toString(simil.getThreshold()),simil.getCompString() , simil.getAggregation().getMode()," " , 1);
-//						value = tempSimil.getSimilarityGrade();
-//						simil.setComparisons(simil.getComparisons()+tempSimil.getComparisons());						
-//						
-//					}else{
-//						value = similarity(author_row.getRealName(), author_column.getRealName(), simil);
-//						simil.increaseComparisons();
-//					}
-					
+					author_column = itr_j.next();					
 					
 					value = similarity(author_row.getRealName(), author_column.getRealName(), simil);
 					//logger_summary.info("Partial similarity: " + value + " row: " + author_row.getRealName() + " column: " + author_column.getRealName() + "\r\n");
@@ -167,42 +92,6 @@ public class Comparison{
 		}
 	}
 
-//	public static void calculate_similarity_of_all_visible_entities(Entity[] authors_i, Entity[] authors_j, Similarity simil){
-//
-//		double value = 0;
-//		double max = 0;
-//		int row = 0, column = 0; 
-//		
-//		for(int i=0; i<authors_i.length;i++){
-//			if(authors_i[i].getVisibility()){
-//				max = 0;
-//				for(int j=0; j<authors_j.length;j++){
-//					if(authors_j[j].getVisibility()){
-//						value = similarity(authors_i[i].getRealName(), authors_j[j].getRealName(),simil);
-//						
-//						simil.increaseComparisons();
-//						simil.updateSimMatrix(i, j, value);
-//						
-//						if (value > max && value >= simil.getThreshold()){
-//							//could be that two authors in the same row have a similarity higher that the threshold
-//							//but we need the highest one
-//							max = value;
-//							row = i;
-//							column = j;
-//							simil.increaseAssertions();
-//						}
-//					}
-//				}
-//				
-//				if (max != 0){
-//					authors_i[row].setVisibilityFalse(); // the author of this row will not be compared again against other author
-//					authors_j[column].setVisibilityFalse(); // the author of this column will not be compared again against other author
-//				}
-//												
-//			}
-//		}
-//	}
-	
 	public static void calculate_similarity_of_all_visible_entities(ArrayList<Entity> authors_i, ArrayList<Entity> authors_j, Similarity simil){
 		
 		double value = 0;
@@ -244,27 +133,6 @@ public class Comparison{
 			}
 		}
 	}
-
-//	public static void similarity_of_main_diagonal(Entity[] authors1, Entity[] authors2, Similarity simil){
-//		
-//		int index = 0;
-//		double value = 0;
-//		
-//		while (index < authors1.length & index < authors2.length){
-//			
-//			value = similarity(authors1[index].getRealName(), authors2[index].getRealName(), simil);
-//			simil.increaseComparisons();
-//				
-//			if (value >= simil.getThreshold()){
-//				simil.increaseAssertions();
-//				authors1[index].setVisibilityFalse(); // the author of this row will not be compared again against other author
-//				authors2[index].setVisibilityFalse(); // the author of this column will not be compared again against other author
-//			}
-//				
-//			simil.updateSimMatrix(index, index, value);	
-//			index++;
-//		}
-//	}
 	
 	public static void similarity_of_main_diagonal(ArrayList<Entity> authors_i, ArrayList<Entity> authors_j, Similarity simil){
 		
@@ -285,27 +153,6 @@ public class Comparison{
 			simil.updateSimMatrix(author_row.getPosition(), author_column.getPosition(), value);
 		}
 	}
-
-//	public static void allAgaistAll(Entity[] authors1, Entity[] authors2, Similarity simil){
-//		
-//		double value = 0;
-//		
-//		for(int i = 0; i < authors1.length;i++){
-//			for(int j = 0; j < authors2.length;j++){
-//				
-//				value = similarity(authors1[i].getRealName(), authors2[j].getRealName(), simil);
-//				
-//				simil.increaseComparisons();
-//							
-//				if (value >= simil.getThreshold()){
-//					simil.increaseAssertions();
-//				}
-//				
-//				simil.updateSimMatrix(i, j, value);
-//				
-//			}
-//		}
-//	}
 	
 	public static void allAgaistAll(ArrayList<Entity> authors_i, ArrayList<Entity> authors_j, Similarity simil){
 		

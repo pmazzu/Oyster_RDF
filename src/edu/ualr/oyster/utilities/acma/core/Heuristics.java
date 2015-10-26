@@ -41,7 +41,6 @@ public class Heuristics extends Similarity {
 			//**********************************************************************************************
 			case 0:
 				
-				//simil.initialization_oyster(args,1); //1: semicolon 2:space
 				simil.initialization_oyster(args);
 				
 				Comparison.allAgaistAll(simil.getSource(), simil.getTarget(), simil);
@@ -58,8 +57,6 @@ public class Heuristics extends Similarity {
 			 //				CALCULATE THE SIMILARITY GRADE OF ALL THE DIFFERENT COMBINATIONS OF AUTHORS   //
 			//**********************************************************************************************
 			case 1:
-				
-				//simil.initialization_oyster(args,1); //1: semicolon 2:space
 				simil.initialization_oyster(args);
 				
 				Comparison.allAgaistAll(simil.getSource(), simil.getTarget(), simil);
@@ -112,10 +109,6 @@ public class Heuristics extends Similarity {
 					aggregation.calculate_max_average(simil);				
 				}
 			
-				if(mode == "DEBUG"){
-					logger_summary.info("Similarity Grade: " + simil.getSimilarityGrade());
-				}
-			
 				break;
 				//**********************************************************************************************
 				 //				ROW & COLUMN HEURISTIC DELETION with Partial Average Threshold  		     //
@@ -123,35 +116,10 @@ public class Heuristics extends Similarity {
 				//**********************************************************************************************
 			case 4:
 				
-				//simil.initialization_oyster(args,2); //1: semicolon 2:space
-				simil.initialization_oyster(args);
-				
-//				sb.delete(0, sb.length());
-//				Iterator<Entity> itr_string_source = simil.getSource().iterator();
-//				
-//				while(itr_string_source.hasNext()){
-//					Entity entity = itr_string_source.next();
-//					sb.append(entity.getRealName() + " | ");
-//				}
-//				logger_summary.info("Author i - string: " + sb.toString() + " | Longitud: " + simil.getSource().size() + "\r\n");
-//				
-//				sb.delete(0, sb.length());
-//				Iterator<Entity> itr_string_target = simil.getTarget().iterator();
-//				
-//				while(itr_string_target.hasNext()){
-//					Entity entity = itr_string_target.next();
-//					sb.append(entity.getRealName() + " | ");
-//				}
-//				logger_summary.info("Author j - string: " + sb.toString() + " | Longitud: " + simil.getTarget().size() + "\r\n");
-				
-				//Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, true); // Comparison process
+				simil.initialization_oyster(args);				
 				Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, false); // Comparison process Se prueba no haciendo check
 				aggregation.calculate_max_average(simil); // Calculate the similarity grade				
 				
-//				if(mode == "DEBUG"){
-//					logger_summary.info("Similarity Grade: " + simil.getSimilarityGrade());
-//				}
-								
 				break;
 				
 				//**********************************************************************************************
@@ -159,19 +127,13 @@ public class Heuristics extends Similarity {
 				 //	Stop calculating similarity values in a respective row when one of them exceeds threshold  //
 				//**********************************************************************************************
 			case 5:
-				
-				//simil.initialization_oyster(args,2); //1: semicolon 2:space
+
 				simil.initialization_oyster(args);
-				
   			    // Comparison process
 				Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, false);
 				// Calculate the similarity grade
 				aggregation.calculate_max_average(simil);				
-				
-//				if(mode == "DEBUG"){
-//					logger_summary.info("Similarity Grade: " + simil.getSimilarityGrade());
-//				}
-														
+																		
 				break;
 				
 				//**********************************************************************************************
@@ -209,30 +171,6 @@ public class Heuristics extends Similarity {
 				
 				simil.setSource(Alignment.sorting_elements(simil.getSource()));
 				simil.setTarget(Alignment.sorting_elements(simil.getTarget()));
-
-//				if(mode == "DEBUG"){
-//					sb.delete(0, sb.length());
-//					Iterator<Entity> itr_string_source = simil.getSource().iterator();
-//					
-//					while(itr_string_source.hasNext()){
-//						Entity entity = itr_string_source.next();
-//						sb.append(entity.getRealName() + " | ");
-//					}
-//					logger_summary.info("Author i - string: " + sb.toString() + " | Longitud: " + simil.getSource().size());
-//					
-//					sb.delete(0, sb.length());
-//					Iterator<Entity> itr_string_target = simil.getTarget().iterator();
-//					
-//					while(itr_string_target.hasNext()){
-//						Entity entity = itr_string_target.next();
-//						sb.append(entity.getRealName() + " | ");
-//					}
-//					logger_summary.info("Author j - string: " + sb.toString() + " | Longitud: " + simil.getTarget().size());
-//
-//				}
-				
-				
-				//simil.scan();
 				
 				// Comparison process
 				Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, true);
@@ -240,26 +178,6 @@ public class Heuristics extends Similarity {
 				// Calculate the similarity grade
 				aggregation.calculate_max_average(simil); 
 						
-//				if(mode == "DEBUG"){
-//					
-//					logger_summary.info("similarities MATRIX");
-//					
-//					sb.delete(0, sb.length());
-//					for(int i=0; i < simil.getRows();i++){
-//						for(int j=0; j < simil.getColumns();j++){
-//							sb.append(simil.getSimMatrixValue(i, j));
-//							sb.append(" | ");
-//						}
-//						logger_summary.info(sb.toString());
-//						
-//						sb.delete(0, sb.length());
-//					}
-//					logger_summary.info("**********************************************************************");
-//					
-//					
-//					
-//					logger_summary.info("Similarity Grade|" + simil.getSimilarityGrade() + "|Comparisons made|" + simil.getComparisons() + "|Assertions|" + simil.getAssertions() + "|Rows|" + simil.getRows() + "|Columns|"+simil.getColumns());	
-//				}
 				break;
 				
 				//**********************************************************************************************
@@ -279,43 +197,6 @@ public class Heuristics extends Similarity {
 				arrayList2 = synonym.getSynonyms(arrayList2);
 				
 				simil.initialization_h8(args,arrayList1,arrayList2);
-				
-				//TODO REMOVE FROM HERE
-				//****************************************************
-				// 						Visualize RAW DATA
-				//****************************************************		
-
-//				if(mode == "DEBUG"){
-////					for(int i=0; i < simil.getRows();i++){
-////					sb.append(simil.getSource()[i].getRealName() + " | ");
-////					}	
-//					sb.delete(0, sb.length());
-//					Iterator<Entity> itr_rows = simil.getSource().iterator();
-//					while(itr_rows.hasNext()){
-//						sb.append(itr_rows.next().getRealName() + " | ");
-//					}
-//					logger_summary.info("Author i - Raw: " + sb.toString() + " | Longitud: " + simil.getRows());
-//				}
-//
-//				if(mode == "DEBUG"){
-//					sb.delete(0, sb.length());
-//					Iterator<Entity> itr_target = simil.getTarget().iterator();
-//					while(itr_target.hasNext()){
-//						sb.append(itr_target.next().getRealName()+ " | ");
-//					}
-////					for(int i=0; i < simil.getColumns();i++){
-////						sb.append(simil.getTarget()[i].getRealName()+ " | ");
-////					}
-//					logger_summary.info("Author j - Raw: " + sb.toString() + " | Longitud: " + simil.getColumns());
-//				}
-				
-				if(mode == "RESULT"){
-					logger_results.info("Comparison_ID" + "|" + "Pub_SIIP" + "|" + "Pub_ISI" + "|" + "Rows" + "|" + "Columns" + "|" + "Comparisons" + "|"+ "Similar?"+"|"+"Max_Author"+"|"+"Assertions"+"|"+"Similarity_Grade"+"|"+"PORC_COMMON" + "|" + "Block"); //header
-				}
-			//TODO REMOVE TO HERE
-													
-				//simil.setSource(Alignment.sorting_elements(simil.getSource()));
-				//simil.setTarget(Alignment.sorting_elements(simil.getTarget()));
 															
 				// Comparison process
 				Comparison.calculate_similarity_of_some_visible_entities(simil.getSource(), simil.getTarget(), simil, true);
@@ -326,7 +207,13 @@ public class Heuristics extends Similarity {
 					logger_summary.info("Similarity Grade|" + simil.getSimilarityGrade() + "|Comparisons made|" + simil.getComparisons() + "|Assertions|" + simil.getAssertions() + "|Rows|" + simil.getRows() + "|Columns|"+simil.getColumns());					
 				}
 				break;
-				
+
+			//**********************************************************************************************//
+			//	              UNSTRUCTURED DATA COMPARISON						  		        		    //
+			//It takes the alphanumerics and divide them in two groups: numbers and characters are put 	    //
+			//separately, so the similarity calculation is more accurate, as numbers are compared against   //
+			//numbers and characters against characters													    //
+			//**********************************************************************************************//
 			case 9:
 				
 				double similarityGrade_int = 0;
@@ -335,188 +222,39 @@ public class Heuristics extends Similarity {
 				boolean similarityIntPerformed = false;
 				boolean similarityStringPerformed = false;
 				
-				ArrayList<Entity> source_string = new ArrayList<Entity>();
-				ArrayList<Entity> target_string = new ArrayList<Entity>();
+				ArrayList<Entity> source_string;
+				ArrayList<Entity> target_string;
 				
-				ArrayList<Entity> source_int = new ArrayList<Entity>();
-				ArrayList<Entity> target_int = new ArrayList<Entity>();
+				ArrayList<Entity> source_int;
+				ArrayList<Entity> target_int;
+				
+				ArrayList<Entity>[] intAndString_source;
+				ArrayList<Entity>[] intAndString_target;
 							
-				//simil.initialization_oyster(args,2); //1: semicolon 2:space
-				simil.initialization_oyster(args);
+				simil.initialization_oyster(args,2); //1: semicolon 2:space
 
-				Iterator<Entity> itr_rows = simil.getSource().iterator();
-				while(itr_rows.hasNext()){
-					Entity entity = itr_rows.next();
-					
-//					if (entity.isString(entity.getRealName())){
-//						entity.setPosition(source_string.size());
-//						source_string.add(entity);
-//					}else{
-//						entity.setRealNameWithoutFormatting(entity.getFingerPrintName());
-//						entity.setPosition(source_int.size());
-//						source_int.add(entity);
-//					}				
-					
-					if(entity.hasAnyNumber){
-						entity.setRealNameWithoutFormatting(entity.getFingerPrintName());
-						entity.setPosition(source_int.size());
-						source_int.add(entity);
-					}else{
-						entity.setPosition(source_string.size());
-						source_string.add(entity);
-					}
-				}
+				//Separates the alphanumeric in two groups: characters on one side and numbers on the other
+				intAndString_source = Heuristics.separateNumbersFromCharacters(simil.getSource().iterator());
+				intAndString_target = Heuristics.separateNumbersFromCharacters(simil.getTarget().iterator());
+						
+				source_int = intAndString_source[0];
+				source_string = intAndString_source[1];
+				target_int = intAndString_target[0];
+				target_string = intAndString_target[1];
 				
-				Iterator<Entity> itr_target = simil.getTarget().iterator();
-				while(itr_target.hasNext()){
-					Entity entity = itr_target.next();
-					
-//					if (entity.isString(entity.getRealName())){
-//						entity.setPosition(target_string.size());
-//						target_string.add(entity);
-//					}else{
-//						entity.setRealNameWithoutFormatting(entity.getFingerPrintName());
-//						entity.setPosition(target_int.size());
-//						target_int.add(entity);
-//					}
-					if(entity.hasAnyNumber){
-						entity.setRealNameWithoutFormatting(entity.getFingerPrintName());
-						entity.setPosition(target_int.size());
-						target_int.add(entity);
-					}else{
-						entity.setPosition(target_string.size());
-						target_string.add(entity);
-					}
-				}
-				
-				int rows,columns;
-				
+				// If both source and target have numbers to compare, the comparison is carried on
 				if(source_int.size()>0 & target_int.size()>0){
-					
 					similarityIntPerformed = true;
+					similarityGrade_int = Heuristics.fairComparison(simil, source_int, target_int);
 					
-					if(source_int.size() < target_int.size()){
-						rows = target_int.size();
-						columns = source_int.size();
-						ArrayList<Entity> temp = source_int;
-						source_int = target_int;
-						target_int = temp;
-					} else {
-						rows = source_int.size();
-						columns = target_int.size();
-					}
-					
-					simil.setSimiMatrix(rows, columns);				
-					
-					//TODO REMOVE IT FROM HERE
-					if(mode == "DEBUG"){
-						sb.delete(0, sb.length());
-						Iterator<Entity> itr_int_source = source_int.iterator();
-						
-						while(itr_int_source.hasNext()){
-							Entity entity = itr_int_source.next();
-							sb.append(entity.getRealName() + " | ");
-						}
-						logger_summary.info("Author i - int: " + sb.toString() + " | Longitud: " + source_int.size());
-					
-						sb.delete(0, sb.length());
-						Iterator<Entity> itr_int_target = target_int.iterator();
-						
-						while(itr_int_target.hasNext()){
-							Entity entity = itr_int_target.next();
-							sb.append(entity.getRealName() + " | ");
-						}
-						logger_summary.info("Author j - int: " + sb.toString() + " | Longitud: " + target_int.size());
-					}
-					
-					//TODO TO HERE
-					
-					// Comparison process			
-					Comparison.calculate_similarity_of_some_visible_entities(source_int, target_int, simil, false);
-					
-					// Calculate the similarity grade integers
-					aggregation.calculate_max_average(simil);
-					
-					similarityGrade_int = simil.getSimilarityGrade();
-					
-					logger_summary.info("similarities INT");
-					
-					sb.delete(0, sb.length());
-					for(int i=0; i < simil.getRows();i++){
-						for(int j=0; j < simil.getColumns();j++){
-							sb.append(simil.getSimMatrixValue(i, j));
-							sb.append(" | ");
-						}
-						logger_summary.info(sb.toString());
-						
-						sb.delete(0, sb.length());
-					}
-					logger_summary.info("**********************************************************************");
 				}
-				
-
+				// If both source and target have characters to compare, the comparison is carried on
 				if (source_string.size() > 0 & target_string.size() > 0){
-					
 					similarityStringPerformed = true;
-					
-					if(source_string.size() < target_string.size()){
-						rows = target_string.size();
-						columns = source_string.size();
-						ArrayList<Entity> temp = source_string;
-						source_string = target_string;
-						target_string = temp;
-					} else {
-						rows = source_string.size();
-						columns = target_string.size();
-					}
-					
-					simil.setSimiMatrix(rows, columns);
-									
-//					if(mode == "DEBUG"){
-//						sb.delete(0, sb.length());
-//						Iterator<Entity> itr_string_source = source_string.iterator();
-//						
-//						while(itr_string_source.hasNext()){
-//							Entity entity = itr_string_source.next();
-//							sb.append(entity.getRealName() + " | ");
-//						}
-//						logger_summary.info("Author i - string: " + sb.toString() + " | Longitud: " + source_string.size());
-//						
-//						sb.delete(0, sb.length());
-//						Iterator<Entity> itr_string_target = target_string.iterator();
-//						
-//						while(itr_string_target.hasNext()){
-//							Entity entity = itr_string_target.next();
-//							sb.append(entity.getRealName() + " | ");
-//						}
-//						logger_summary.info("Author j - string: " + sb.toString() + " | Longitud: " + target_string.size());
-//
-//					}
-					
-					Comparison.calculate_similarity_of_some_visible_entities(source_string, target_string, simil, false);
-					
-					// Calculate the similarity grade strings
-					aggregation.calculate_max_average(simil);
-					
-					similarityGrade_string = simil.getSimilarityGrade();
-					
-//					
-					logger_summary.info("similarities STRING");
-					
-					sb.delete(0, sb.length());
-					for(int i=0; i < simil.getRows();i++){
-						for(int j=0; j < simil.getColumns();j++){
-							sb.append(simil.getSimMatrixValue(i, j));
-							sb.append(" | ");
-						}
-						logger_summary.info(sb.toString());
-						
-						sb.delete(0, sb.length());
-					}
-					logger_summary.info("**********************************************************************");
+					similarityGrade_string = Heuristics.fairComparison(simil, source_string, target_string);			
 				}
 				
-
+				// Calculate the similarity grade considering which comparison had been performed
 				if (similarityIntPerformed && similarityStringPerformed){
 					simil.setSimilarityGrade((similarityGrade_int+similarityGrade_string)/2.0);
 				} else if (similarityIntPerformed){
@@ -525,99 +263,11 @@ public class Heuristics extends Similarity {
 					simil.setSimilarityGrade(similarityGrade_string);
 				}
 				
-				if(mode == "DEBUG"){
-					logger_summary.info("Similarity int|"+similarityGrade_int+"|Similarity string|"+similarityGrade_string+"|Similarity Grade|" + simil.getSimilarityGrade() + "|Comparisons made|" + simil.getComparisons() + "|Assertions|" + simil.getAssertions() + "|Rows|" + simil.getRows() + "|Columns|"+simil.getColumns());					
-				}
-				
 				break;
-				
-			}
 		
 		timer.stop();
 		simil.setPorcCommon();
 		simil.setBlock();
-		
-		//****************************************************
-		// 				SHOW THE SIMILARITY VALUES
-		//****************************************************		
-		if(mode == "DEBUG"){
-			
-			//****************************************************
-			// 						Visualize FingerPrinted DATA
-			//****************************************************	
-			
-//			if(mode == "DEBUG"){
-////				sb.delete(0, sb.length());
-////				for(int i=0; i < simil.getRows();i++){
-////					sb.append(simil.getSource()[i].getRealName() + " | ");
-////				}
-//				sb.delete(0, sb.length());
-//				Iterator<Entity> itr_rows = simil.getSource().iterator();
-//				while(itr_rows.hasNext()){
-//					sb.append(itr_rows.next().getRealName() + " | ");
-//				}				
-//				logger_summary.info("Author i - FingerPrinted: " + sb.toString() + " | Longitud: " + simil.getRows());
-//			}
-			
-//			if(mode == "DEBUG"){
-////				sb.delete(0, sb.length());
-////				for(int i=0; i < simil.getColumns();i++){
-////					sb.append(simil.getTarget()[i].getRealName()+ " | ");
-////				}			
-//				sb.delete(0, sb.length());
-//				Iterator<Entity> itr_target = simil.getTarget().iterator();
-//				while(itr_target.hasNext()){
-//					sb.append(itr_target.next().getRealName()+ " | ");
-//				}
-//				logger_summary.info("Author j - FingerPrinted: " + sb.toString() + " | Longitud: " + simil.getColumns());
-//			}
-			
-//			logger_summary.info("Heuristic: " + heuristic);
-//			
-//			sb.delete(0, sb.length());
-//			for(int i=0; i < simil.getRows();i++){
-//				for(int j=0; j < simil.getColumns();j++){
-//					sb.append(simil.getSimMatrixValue(i, j));
-//					sb.append(" | ");
-//				}
-//				logger_summary.info(sb.toString());
-//				
-//				sb.delete(0, sb.length());
-//			}
-//			logger_summary.info("**********************************************************************");
-//		}
-		
-//		if(mode == "RESULT"){
-//			sb.delete(0, sb.length());
-//			sb.append(simil.getSource()[0].getPubId()).append("-").append(simil.getTarget()[0].getPubId());
-//			
-//			if (simil.getSimilarityGrade() >= simil.getThreshold()){
-//				logger_results.log(Level.INFO, sb.toString() + "|" + simil.getSource()[0].getPubId() + "|" + simil.getTarget()[0].getPubId() + "|" + simil.getRows() + "|" + simil.getColumns() + "|" + simil.getComparisons() + "|" +"yes" + "|" + simil.getRows() + "|" + simil.getAssertions() + "|" + simil.getSimilarityGrade() + "|" + simil.getPorcCommon() + "|" + simil.getBlock());
-//			}else{
-//				logger_results.log(Level.INFO, sb.toString() + "|" + simil.getSource()[0].getPubId() + "|" + simil.getTarget()[0].getPubId() + "|" + simil.getRows() + "|" + simil.getColumns() + "|" + simil.getComparisons() + "|" +"no"  + "|" + simil.getRows() + "|" + simil.getAssertions() + "|" + simil.getSimilarityGrade() + "|" + simil.getPorcCommon() + "|" + simil.getBlock());
-//			}
-//		}
-
-//		if(mode == "RESULT"){		
-//		
-//			Iterator<Entity> itr_source = simil.getSource().iterator();
-//			Iterator<Entity> itr_target = simil.getTarget().iterator();
-//		
-//			if(itr_source.hasNext() && itr_target.hasNext()){
-//				Entity source;
-//				Entity target;
-//				source = itr_source.next();
-//				target = itr_target.next();
-//				sb.delete(0, sb.length());
-//				sb.append(source.getPubId()).append("-").append(target.getPubId());
-//				
-//				if (simil.getSimilarityGrade() >= simil.getThreshold()){
-//					logger_results.log(Level.INFO, sb.toString() + "|" + source.getPubId() + "|" + target.getPubId() + "|" + simil.getRows() + "|" + simil.getColumns() + "|" + simil.getComparisons() + "|" +"yes" + "|" + simil.getRows() + "|" + simil.getAssertions() + "|" + simil.getSimilarityGrade() + "|" + simil.getPorcCommon() + "|" + simil.getBlock());
-//				}else{
-//					logger_results.log(Level.INFO, sb.toString() + "|" + source.getPubId() + "|" + target.getPubId() + "|" + simil.getRows() + "|" + simil.getColumns() + "|" + simil.getComparisons() + "|" +"no"  + "|" + simil.getRows() + "|" + simil.getAssertions() + "|" + simil.getSimilarityGrade() + "|" + simil.getPorcCommon() + "|" + simil.getBlock());
-//				}				
-//			}
-		}
 								
 //		if(mode == "PERFORMANCE"){
 //			
@@ -629,5 +279,62 @@ public class Heuristics extends Similarity {
 //			logger_log.log(Level.INFO, "Elapsed Time - ms: " + TimeUnit.MILLISECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS));
 //			logger_log.log(Level.INFO, "Elapsed Time - sec: " + TimeUnit.SECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS));
 //		}
+	}
+	
+	private static ArrayList<Entity>[] separateNumbersFromCharacters(Iterator<Entity> itr){
+		
+		ArrayList<Entity> string = new ArrayList<Entity>();
+		ArrayList<Entity> integer = new ArrayList<Entity>();
+		ArrayList<Entity>[] intSeparatedFromString = (ArrayList<Entity>[])new ArrayList[2];
+				
+		 while(itr.hasNext()){
+			Entity entity = itr.next();
+			
+			if(entity.hasAnyNumber){
+				entity.setRealNameWithoutFormatting(entity.getFingerPrintName());
+				entity.setPosition(integer.size());
+				integer.add(entity);
+			}else{
+				entity.setPosition(string.size());
+				string.add(entity);
+			}
+		}
+		 
+		 intSeparatedFromString[0] = integer;
+		 intSeparatedFromString[1] = string;
+		 		 
+		 return intSeparatedFromString;
+		
+	}
+	
+	private static double fairComparison(Similarity simil, ArrayList<Entity> source, ArrayList<Entity> target){
+		
+		int rows,columns;
+		double similarityGrade = 0;
+		Aggregation aggregation = simil.getAggregation();
+					
+		if(source.size() < target.size()){
+			rows = target.size();
+			columns = source.size();
+			ArrayList<Entity> temp = source;
+			source = target;
+			target = temp;
+		} else {
+			rows = source.size();
+			columns = target.size();
+		}
+		
+		simil.setSimiMatrix(rows, columns);				
+		
+		// Comparison process			
+		Comparison.calculate_similarity_of_some_visible_entities(source, target, simil, false);
+		
+		// Calculate the similarity grade integers
+		aggregation.calculate_max_average(simil);
+		
+		similarityGrade = simil.getSimilarityGrade();
+		
+		return similarityGrade;
+		
 	}
 }

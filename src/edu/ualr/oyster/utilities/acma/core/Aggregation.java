@@ -64,42 +64,7 @@ public class Aggregation {
 			}
 			
 			simil.setSimilarityGrade(horizontalSum / simil.getColumns());
-		}
-		
-		
-//		// get the max value of each row and column, sum them, and calculate the average of the biggest value
-//		// find the highest values of each row						
-//			for (i = 0;i < simil.getRows(); i++ ){
-//				for (j = 0; j < simil.getColumns();j++){
-//					if (simil.getSimMatrixValue(i,j) > highest){
-//						highest = simil.getSimMatrixValue(i,j);
-//					}
-//				}
-//				verticalSum = verticalSum + highest;
-//				highest = 0;
-//			}
-//			
-//			// find the highest values of each column
-//			highest = 0;
-//			for (j = 0;j < simil.getColumns(); j++ ){
-//				for (i = 0; i < simil.getRows();i++){
-//					if (simil.getSimMatrixValue(i,j) > highest){
-//						highest = simil.getSimMatrixValue(i,j);
-//					}
-//				}
-//				horizontalSum = horizontalSum + highest;
-//				highest = 0;
-//			}
-//			
-//			if(horizontalSum > verticalSum){
-//				simil.setSimilarityGrade(horizontalSum / simil.getColumns());
-//			}else{
-//				simil.setSimilarityGrade(verticalSum / simil.getRows());
-//			}
-			
-//			logger_log.info("verticalSum: " + verticalSum);
-//			logger_log.info("horizontalSum: " + horizontalSum);
-			
+		}		
 	}
 	
 }
