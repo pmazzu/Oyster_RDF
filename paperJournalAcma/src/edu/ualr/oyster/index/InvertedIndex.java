@@ -236,7 +236,7 @@ abstract public class InvertedIndex implements Index {
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
     		//simil = acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.82", "rms", "SUBSET",1);
-    		simil = acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "0.70", "jw", "SUBSET", "ws",1);
+    		simil = acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "jw", "SUBSET", "ws",1);
     		
     		if (simil.getAssertions() > 0){
     			if (max_similarity <= simil.getSimilarityGrade()){

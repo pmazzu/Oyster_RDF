@@ -231,7 +231,7 @@ public class Heuristics extends Similarity {
 				ArrayList<Entity>[] intAndString_source;
 				ArrayList<Entity>[] intAndString_target;
 							
-				simil.initialization_oyster(args,2); //1: semicolon 2:space
+				simil.initialization_oyster(args); //1: semicolon 2:space
 
 				//Separates the alphanumeric in two groups: characters on one side and numbers on the other
 				intAndString_source = Heuristics.separateNumbersFromCharacters(simil.getSource().iterator());
@@ -264,11 +264,12 @@ public class Heuristics extends Similarity {
 				}
 				
 				break;
+		}
 		
 		timer.stop();
 		simil.setPorcCommon();
 		simil.setBlock();
-								
+
 //		if(mode == "PERFORMANCE"){
 //			
 //			totalComparisons = totalComparisons + simil.getComparisons();
