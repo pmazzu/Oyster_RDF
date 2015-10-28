@@ -12,9 +12,10 @@ public class LogAdministrator {
 	private static String mode = "DEBUG"; //DEBUG RESULT PERFORMANCE
 	
 	//private static String outputPath = "C:/Users/Pablo/Dropbox/Trabajo/SIIP/Workspaces/MyEclipse 9/Aggregation_operator/src/test_files/Summary_log.txt";
-	private static String resultsPath = "C:/Users/Pablo/Desktop/logs/results_log.txt";
-	private static String logFile = "C:/Users/Pablo/Dropbox/Trabajo/SIIP/Workspaces/MyEclipse 9/Aggregation_operator/src/test_files/log.txt";
-	private static String outputPath = "C:/Users/Pablo/Desktop/logs/Summary_log.txt";
+//	private static String resultsPath = "C:/Oyster/IdentityCaptureToTestACMA/Log/results_log.txt";
+	private static String resultsPath = "/home/ontos/oyster_paper_acma/IdentityCaptureToTestACMA/Log/results_log.txt";
+	private static String logFile = "C:/Oyster/IdentityCaptureToTestACMA/Log/log.txt";
+	private static String outputPath = "C:/Oyster/IdentityCaptureToTestACMA/Log/Summary_log.txt";
 	
 	public static String getMode(){
 		return mode;

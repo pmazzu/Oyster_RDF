@@ -28,7 +28,7 @@ public class Heuristics extends Similarity {
 		String mode = LogAdministrator.getMode();
 		MyStopWatch timer = new MyStopWatch();
 		StringBuilder sb = new StringBuilder();
-		int heuristic = Integer.parseInt(args[6]);
+		int heuristic = Integer.parseInt(args[5]);
 		
 		Aggregation aggregation = simil.getAggregation();
 				

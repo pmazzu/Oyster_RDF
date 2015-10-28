@@ -2772,7 +2772,7 @@ public class OysterMain {
         final OysterMain oMain = new OysterMain();
 
 		//mazzucchi
-        LogAdministrator.init_summary();
+//        LogAdministrator.init_summary();
         LogAdministrator.init_results();
 //        logger_summary.info("Source" +"|" +"SourceID" + "|" + "Target" +"|" +"TargetID" + "|" + "Similarity" + "\r\n" );
 //        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "\r\n" );
@@ -2836,7 +2836,7 @@ public class OysterMain {
         }
 */
         //mazzucchi
-        LogAdministrator.removeHandler("SUMMARY");
+        //LogAdministrator.removeHandler("SUMMARY");
         LogAdministrator.removeHandler("RESULTS");
     }
     

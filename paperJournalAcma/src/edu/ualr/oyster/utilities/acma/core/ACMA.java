@@ -10,8 +10,8 @@ import edu.ualr.oyster.utilities.acma.log.LogAdministrator;
 public class ACMA {
 	
 	private final static Logger logger_results = Logger.getLogger("RESULTS");
-	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
-	private final static Logger logger_log = Logger.getLogger("LOG");
+	//private final static Logger logger_summary = Logger.getLogger("SUMMARY");
+	//private final static Logger logger_log = Logger.getLogger("LOG");
 	
 	public Heuristics multivalued_attr_similarity_calc(String list_1, String list_2, String comparators, String aggrMode, String separator, int stage){
 		
@@ -50,19 +50,20 @@ public class ACMA {
 					
 		Heuristics.heuristic(simil, arguments);
 					
-		if(stage == 1){
-			logger_results.info(simil.getSimilarityGrade() + "\r\n"); // index comparison
-		}else{
-			logger_summary.info(simil.getSimilarityGrade() + "\r\n"); //inside cluster comparison
-			//logger_summary.info("Lists compared: " + list_1 + " | " + list_2 + " | " + simil.getSimilarityGrade()+"\r\n");
+		if(stage == 2){
+			logger_results.info(simil.getSimilarityGrade() + "\r\n"); //inside cluster comparison
 		}
+//		else{
+//			logger_summary.info(simil.getSimilarityGrade() + "\r\n"); // index comparison
+//			//logger_summary.info("Lists compared: " + list_1 + " | " + list_2 + " | " + simil.getSimilarityGrade()+"\r\n");
+//		}
 		
 		//LogAdministrator.removeHandler("LOG");
 		//LogAdministrator.removeHandler("RESULTS");
 		//LogAdministrator.removeHandler("SUMMARY");
 		
 		//return similar;
-		
+				
 		return simil;
 	}
 }

@@ -283,12 +283,12 @@ public abstract class Similarity {
 		String authorList1 = args[0];
 		String authorList2 = args[1];
 					
-		double threshold = Double.parseDouble(args[2]);
-		double threshold_noSimil = Double.parseDouble(args[3]);
+		//double threshold = Double.parseDouble(args[2]);
+		double threshold_noSimil = Double.parseDouble(args[2]);
 		
-		String comparators = args[4];
+		String comparators = args[3];
 		
-		String aggrMode = args[5];
+		String aggrMode = args[4];
 		
 		String[] comparators_temp;
 
@@ -297,9 +297,9 @@ public abstract class Similarity {
 		
 		int splitSeparator = 0;
 		
-		if (args[7].equals("ws")){
+		if (args[6].equals("ws")){
 			splitSeparator = 2; //space
-		}else if(args[7].equals(";")){
+		}else if(args[6].equals(";")){
 			splitSeparator = 1; //semicolon
 		}
 		
