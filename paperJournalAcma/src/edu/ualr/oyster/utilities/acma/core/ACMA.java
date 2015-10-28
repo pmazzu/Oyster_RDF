@@ -10,6 +10,7 @@ import edu.ualr.oyster.utilities.acma.log.LogAdministrator;
 public class ACMA {
 	
 	private final static Logger logger_results = Logger.getLogger("RESULTS");
+	
 	//private final static Logger logger_summary = Logger.getLogger("SUMMARY");
 	//private final static Logger logger_log = Logger.getLogger("LOG");
 	
@@ -28,7 +29,7 @@ public class ACMA {
 //		}else{
 //			logger_summary.info("similarity_comparison");
 //		}
-				
+		
 		String threshold_noSimil = "0.8";
 		String heuristic_id = "4";
 		
