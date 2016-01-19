@@ -67,6 +67,7 @@ public class Comparison{
 						
 					
 					if (roundedValue >= simil.getThreshold()){
+					//if (roundedValue >= simil.getNoSimilarityThreshold()){
 						itr_j.remove();
 						simil.increaseAssertions();
 						break third_loop;

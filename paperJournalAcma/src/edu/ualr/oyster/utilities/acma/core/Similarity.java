@@ -1,11 +1,14 @@
 package edu.ualr.oyster.utilities.acma.core;
 
 import edu.ualr.oyster.utilities.acma.blocking.Fingerprint;
+import edu.ualr.oyster.utilities.acma.log.MyStopWatch;
 import edu.ualr.oyster.utilities.acma.source.Sources;
 
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 //import java.util.Arrays;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 //import java.util.logging.Logger;
@@ -26,7 +29,27 @@ public abstract class Similarity {
 	public String[] impl_comparators = {"rms", "nickname", "exact", "alias", "NYSII", "jw"};
 	public String [] comparators;
 	public String comparators_string;
+	public String group;
+	public long totalExecutionTime_ns = 0;
+	public long totalExecutionTime_ms = 0;
+	public long totalExecutionTime_s = 0;
 
+	public String getGroup(){
+		return this.group;
+	}
+	
+	public long getExecutionTimeNs(){
+		return this.totalExecutionTime_ns;
+	}
+	
+	public long getExecutionTimeMs(){
+		return this.totalExecutionTime_ms;
+	}
+	
+	public long getExecutionTimeS(){
+		return this.totalExecutionTime_s;
+	}
+	
 	public String getCompString(){
 		return this.comparators_string;
 	}
@@ -88,10 +111,43 @@ public abstract class Similarity {
 		return similarityGrade;
 	}
 
-	public void setPorcCommon(){
+	public void setGroup(){
+		
 		double maxAuthors = (double)this.rows;
 		this.porcCommon = this.assertions / maxAuthors;
+		double porcentaje=round(this.porcCommon,2)*100;
+		
+		if (porcentaje < 1.0){ //none of the authors are equal
+			this.group = "Grupo_0";
+		} else if (porcentaje >=1.0 && porcentaje<=33.0){//all the authors are equal
+			this.group = "Grupo_1-33";
+		} else if (porcentaje >34.0 && porcentaje<=66.0){//all the authors are equal
+			this.group = "Grupo_34-66";
+		} else if (porcentaje >=67.0 && porcentaje<=99.0){//all the authors are equal
+			this.group = "Grupo_67-99";
+		} else if (porcentaje ==100.0){//all the authors are equal
+			this.group = "Grupo_100";
+		}
 	}
+	
+	public void setTimeElapsed(MyStopWatch timer){
+		this.totalExecutionTime_ns=timer.getElapsedTime();
+		this.totalExecutionTime_ms=TimeUnit.MILLISECONDS.convert(totalExecutionTime_ns, TimeUnit.NANOSECONDS);
+		this.totalExecutionTime_s=TimeUnit.SECONDS.convert(totalExecutionTime_ns, TimeUnit.NANOSECONDS);
+	}
+	
+	public void setPorcCommon(){
+		double maxAuthors = (double)this.rows;
+		this.porcCommon = this.assertions / maxAuthors;		
+	}
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+	
 	public void setPartialSimilarityGrade(double partialSimilarity) {
 		this.partialSimilarity = partialSimilarity;
 	}
@@ -283,8 +339,8 @@ public abstract class Similarity {
 		String authorList1 = args[0];
 		String authorList2 = args[1];
 					
-		//double threshold = Double.parseDouble(args[2]);
-		double threshold_noSimil = Double.parseDouble(args[2]);
+		double threshold = Double.parseDouble(args[2]);
+		//double threshold_noSimil = Double.parseDouble(args[2]);
 		
 		String comparators = args[3];
 		
@@ -347,7 +403,7 @@ public abstract class Similarity {
 		this.setEfficency(0);
 		this.setSimilarityGrade(0);
 		this.setThreshold(threshold); // Set the threshold to determine if the authors are similar or not 0.9
-		this.setNoSimilarityThreshold(threshold_noSimil); // Set the threshold to determine when to stop comparing 0.8
+		//this.setNoSimilarityThreshold(threshold_noSimil); // Set the threshold to determine when to stop comparing 0.8
 
 	}
 	

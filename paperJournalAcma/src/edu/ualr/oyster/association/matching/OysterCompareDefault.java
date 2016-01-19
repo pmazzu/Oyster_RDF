@@ -562,7 +562,7 @@ public class OysterCompareDefault extends OysterComparator {
         } else if (matchType.equalsIgnoreCase("SCAN") && scan.compareScan(s, t, direction, charType, length, upperCase, order)){
             result = tempMatchType;
       // BEGIN MODIFICATION
-        } else if (matchType.equalsIgnoreCase("ACMA") && acma.multivalued_attr_similarity_calc(s, t, list_comparators, aggrMode, separator, 2).getSimilarityGrade() >= Double.parseDouble(threshold_acma)){
+        } else if (matchType.equalsIgnoreCase("ACMA") && acma.multivalued_attr_similarity_calc(s, t, list_comparators, aggrMode, separator, 2, threshold_acma).getSimilarityGrade() >= Double.parseDouble(threshold_acma)){
         	result = tempMatchType;
       // END MODIFICATION
         } else {
@@ -664,7 +664,7 @@ public class OysterCompareDefault extends OysterComparator {
             } else if (matchType.equalsIgnoreCase("SCAN") && !scan.compareScan(s, t, direction, charType, length, upperCase, order)) {
                 result = tempMatchType;
            // BEGIN MODIFICATION
-            } else if (matchType.equalsIgnoreCase("ACMA") && !(acma.multivalued_attr_similarity_calc(s, t, list_comparators, aggrMode, separator, 2).getSimilarityGrade() >= Double.parseDouble(threshold_acma))) {
+            } else if (matchType.equalsIgnoreCase("ACMA") && !(acma.multivalued_attr_similarity_calc(s, t, list_comparators, aggrMode, separator, 2, threshold_acma).getSimilarityGrade() >= Double.parseDouble(threshold_acma))) {
                 result = tempMatchType;
            // END MODIFICATION
             } else {

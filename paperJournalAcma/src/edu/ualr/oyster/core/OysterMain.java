@@ -78,6 +78,7 @@ import java.util.LinkedHashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import java.util.Set;
 import java.util.TimeZone;
 import java.util.Timer;
@@ -2772,11 +2773,13 @@ public class OysterMain {
         final OysterMain oMain = new OysterMain();
 
 		//mazzucchi
-//        LogAdministrator.init_summary();
+        //LogAdministrator.init_summary();
         LogAdministrator.init_results();
-//        logger_summary.info("Source" +"|" +"SourceID" + "|" + "Target" +"|" +"TargetID" + "|" + "Similarity" + "\r\n" );
-//        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "\r\n" );
-        //
+        //logger_summary.info("");
+        
+        final Logger logger_results = Logger.getLogger("RESULTS");
+        
+        logger_results.info("Source" +"|" + "Target" + "|" + "Similarity" + "|" + "Group" + "|" + "AmountOfComparisons" + "|" + "ExecutionTime(Ns)" + "|" + "ExecutionTime(Ms)" + "|" + "ExecutionTime(S)" +"\r\n" );
         
         System.out.println("Oyster v." + oMain.getVersion());
         System.out.println();

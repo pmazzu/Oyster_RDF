@@ -13,7 +13,8 @@ public class LogAdministrator {
 	
 	//private static String outputPath = "C:/Users/Pablo/Dropbox/Trabajo/SIIP/Workspaces/MyEclipse 9/Aggregation_operator/src/test_files/Summary_log.txt";
 	//private static String resultsPath = "C:/Oyster/IdentityCaptureToTestACMA/Log/results_log.txt";
-	private static String resultsPath = "/home/ontos/oyster_paper_acma/IdentityCaptureToTestACMA/Log/results_log.txt";
+	//private static String resultsPath = "/home/ontos/oyster_paper_acma/IdentityCaptureToTestACMA/Log/results_log.txt";
+	private static String resultsPath = "C:/Oyster/IdentityCaptureToTestACMA/Log/results_log.txt";
 	private static String logFile = "C:/Oyster/IdentityCaptureToTestACMA/Log/log.txt";
 	private static String outputPath = "C:/Oyster/IdentityCaptureToTestACMA/Log/Summary_log.txt";
 	

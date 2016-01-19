@@ -231,7 +231,7 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     		String hash = it.next();
     		
     		//logger_results.info(hash+"|"+lookingForSimilarities + "|");
-    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "jw", "SUBSET", "ws",1);
+    		simil =  acma.multivalued_attr_similarity_calc(hash, lookingForSimilarities, "jw", "SUBSET", "ws",1, "0.82");
     		porcSimil = (double)simil.getAssertions() / (double)simil.getRows();
 
 			//System.out.println(hash + "|" + lookingForSimilarities+"|"+simil.getSimilarityGrade()+"|"+porcSimil);
@@ -481,7 +481,7 @@ public class TalburtZhouInvertedIndex extends InvertedIndex {
     	for (Iterator<String> it = index.keySet().iterator();it.hasNext();){
     		String hash = it.next();
     		//logger_results.info(hash+"|"+valueToBeCompared + "|");
-    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "jw", "SUBSET", "ws",1);
+    		simil =  acma.multivalued_attr_similarity_calc(hash, valueToBeCompared, "jw", "SUBSET", "ws",1,"0.82");
     		
     		porcSimil = (double)simil.getAssertions() / (double)simil.getRows();
     		

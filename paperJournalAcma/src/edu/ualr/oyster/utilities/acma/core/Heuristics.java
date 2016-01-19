@@ -2,8 +2,8 @@ package edu.ualr.oyster.utilities.acma.core;
 
 import java.util.Iterator;
 import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.concurrent.TimeUnit;
+//import java.util.logging.Level;
+//import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 
 import edu.ualr.oyster.utilities.acma.log.LogAdministrator;
@@ -13,21 +13,21 @@ import edu.ualr.oyster.utilities.acma.source.Sources;
 
 public class Heuristics extends Similarity {
 	
-	private final static Logger logger_results = Logger.getLogger("RESULTS");
+	//private final static Logger logger_results = Logger.getLogger("RESULTS");
 	private final static Logger logger_summary = Logger.getLogger("SUMMARY");
-	private final static Logger logger_log = Logger.getLogger("LOG");
+//	private final static Logger logger_log = Logger.getLogger("LOG");
 	
 //**********************************************************************************************
 //				CALCULATE THE SIMILARITY GRADE OF ALL THE DIFFERENT COMBINATIONS OF AUTHORS   //
 //**********************************************************************************************
 	public static void heuristic(Similarity simil, String[] args){
 		
-		int totalComparisons = 0;
-		long totalExecutionTime = 0;
+//		int totalComparisons = 0;
+//		long totalExecutionTime = 0;
 		
 		String mode = LogAdministrator.getMode();
 		MyStopWatch timer = new MyStopWatch();
-		StringBuilder sb = new StringBuilder();
+//		StringBuilder sb = new StringBuilder();
 		int heuristic = Integer.parseInt(args[5]);
 		
 		Aggregation aggregation = simil.getAggregation();
@@ -267,15 +267,17 @@ public class Heuristics extends Similarity {
 		}
 		
 		timer.stop();
+		simil.setTimeElapsed(timer);
 		simil.setPorcCommon();
 		simil.setBlock();
+		simil.setGroup();
 
 //		if(mode == "PERFORMANCE"){
 //			
 //			totalComparisons = totalComparisons + simil.getComparisons();
 //			totalExecutionTime = totalExecutionTime + timer.getElapsedTime();
 //			
-//			logger_log.log(Level.INFO, "Total Comparisonn: " + totalComparisons);
+//			logger_log.log(Level.INFO,totalComparisons+"|"+totalExecutionTime+"|"+TimeUnit.MILLISECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS)+"|"+TimeUnit.SECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS));
 //			logger_log.log(Level.INFO, "Elapsed Time - ns: " + totalExecutionTime);
 //			logger_log.log(Level.INFO, "Elapsed Time - ms: " + TimeUnit.MILLISECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS));
 //			logger_log.log(Level.INFO, "Elapsed Time - sec: " + TimeUnit.SECONDS.convert(totalExecutionTime, TimeUnit.NANOSECONDS));
