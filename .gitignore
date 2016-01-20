@@ -58,3 +58,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 /bin/
+
+# classpath (porque tengo un .jar externo y cambia la ruta cuando lo quiero ejecutar desde semtech o mi lap)
+*.classpath
