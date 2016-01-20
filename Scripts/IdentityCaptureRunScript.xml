@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : IdentityCaptureRunScript.xml
+    Created on : 4/18/12
+    Author     : Fumiko Kobayashi
+    Description: Sample Identity Capture Run Script
+-->
+
+<OysterRunScript>
+    <Settings RunScriptName="IdentityCaptureRunScript" Explanation="On" Debug="On" ChangeReportDetail="Yes"  Trace="On" SS="Off" />
+    
+    <LogFile Num="5" Size="100000000">C:/Oyster/IdentityCaptureToTestACMA/Log/IdentityCapture_%g.log</LogFile>  
+
+    <RunMode>IdentityCapture</RunMode>
+
+    <EREngine Type="FSCluster" />
+
+    <!-- Attributes read from file only -->
+    <AttributePath>C:/Oyster/IdentityCaptureToTestACMA/Scripts/IdentityCaptureAttributes_autores.xml</AttributePath>
+
+    <!-- Merge-purge does not start with any managed identities -->
+    <IdentityInput Type="None"/>
+    
+    <!-- Merge-purge does not produce any managed identities -->
+    <IdentityOutput Type="TextFile">C:/Oyster/IdentityCaptureToTestACMA/Output/IdentityCaptureOutput.idty</IdentityOutput>
+
+    <!-- Merge-purge only output is the Link Index  -->
+    <LinkOutput Type="TextFile">C:/Oyster/IdentityCaptureToTestACMA/Output/IdentityCaptureIndex.link</LinkOutput>
+    
+    <!-- Sources to Run -->
+    <ReferenceSources>
+        <Source>C:/Oyster/IdentityCaptureToTestACMA/Scripts/IdentityCaptureSourceDescriptor_autores.xml</Source>
+    </ReferenceSources>
+</OysterRunScript>

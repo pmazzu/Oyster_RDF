@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : IdentityCaptureAttributes.xml
+    Created on : 11/26/10
+    Author     : Fumiko Kobayashi
+    Description:
+        Attribute xml file for the Identity Capture sample run
+-->
+
+<OysterAttributes System="School">
+    <Attribute Item="ID" 		Algo= "none" />
+    <Attribute Item="CVE" 		Algo= "none" />
+    <Attribute Item="AUTORES"	Algo="none"  />
+ 
+    <IdentityRules>
+		<Rule Ident="1">
+		    <Term Item="AUTORES" MatchResult="ACMA(0.82,rms, SUBSET,;)"/>
+	    </Rule>
+    </IdentityRules>
+	
+	<!--	
+	<indices>
+		<Index Ident="Ind1">
+			<Segment item="NOMBRE" Hash="Scan(LR, All, 0, KeepCase, SameOrder)"/>
+		</Index>
+	</indices>
+	-->
+</OysterAttributes>
